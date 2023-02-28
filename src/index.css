@@ -192,7 +192,7 @@ tr {
   width: 100%;
   display: grid;
   /* has to have the same number of frs as columns */
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   color: var(--TABLE-COLOR);
   gap: 0.1em;
 }

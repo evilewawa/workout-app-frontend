@@ -5,11 +5,12 @@ import { useNavigate } from "react-router-dom";
 import {useSelector} from "react-redux";
 import { selectWorkoutsById } from "./workoutsApiSlice";
 
-const Workout = ({workoutId, userID}) => {
+const Workout = ({workoutId, userID, exercise_name}) => {
     const workout = useSelector(state => selectWorkoutsById(state, workoutId))
     const navigate = useNavigate()
     // temporary filter for userID
-    if (workout && (userID === "all" || parseInt(userID) === workout.userID)){
+    if (workout && (userID === "all" || parseInt(userID) === workout.userID) 
+    && (workout.exercise_name === exercise_name || exercise_name === "All")){
         const handleEdit = () => navigate("/dash/workouts/${workoutId}")
         const workoutSetsString = workout.sets.toString().replaceAll(",", ",")
         const workoutDate = new Date(workout.createdAt.toString())
@@ -26,12 +27,12 @@ const Workout = ({workoutId, userID}) => {
                 <td className = {`table__cell`}>{workoutSetsString}</td>
                 <td className = {`table__cell`}>{workoutDateString}</td>
                 <td className = {`table__cell`}>{workoutUserIDString}</td>
-                <td className = {`table__cell`}>
+                {/* <td className = {`table__cell`}>
                     <button className = "icon-button table__button"
                     onClick = {handleEdit}>
                         <FontAwesomeIcon icon = {faPenToSquare}/>
                     </button>
-                </td>
+                </td> */}
             </tr>
         )
 

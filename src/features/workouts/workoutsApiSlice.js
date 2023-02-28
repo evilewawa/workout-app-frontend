@@ -35,11 +35,63 @@ export const workoutsApiSlice = apiSlice.injectEndpoints({
                 }else return [{type:"Workout", id: "LIST"}]
             }
         }),
+        getExerciseNames:builder.query({
+            query:()=>"/workouts/getWorkoutNames",
+            validateStatus: (response, result) => {
+                return response.validateStatus===200 && !result.isError
+            },
+
+            //in seconds, default is 60s
+            // keepUnusedDataFor:5,
+            // data:return(data)
+            // transformResponse:responseData => {
+            //     const loadedWorkouts = responseData.map(workout => {
+            //         // normalized data stuff is looking for .id not ._id
+            //         workout.id = workout._id
+            //         return workout
+            //     })
+            //     return workoutsAdapter.setAll(initialState, loadedWorkouts)
+            // },
+            // providesTags:(result, error, arg) => {
+            //     if (result?.ids){
+            //         return [
+            //             {type:"Workout", id:"LIST"},
+            //             ...result.ids.map(id => ({type:"Workout", id}))
+            //         ]
+            //     }else return [{type:"Workout", id: "LIST"}]
+            // }
+        }),
+        addNewExercise: builder.mutation({
+            query: workoutData => ({
+                url: "/workouts",
+                method:"POST",
+                body: {
+                    ...workoutData
+                }
+            })
+        }),
+        getWorkoutsByUserID :builder.query({
+            query : (userID) => `/workouts/${userID}`,
+            validateStatus: (response, result) => {
+                return response.validateStatus===200 && !result.isError
+            },
+        }),
+        getWorkoutsByUserIDAndName:builder.query({
+            query : (userID, exercise_name) => `workouts/${userID}/${exercise_name}`,
+            validateStatus: (response, result) => {
+                return response.validateStatus===200 && !result.isError
+            },
+        })
+
     }),
 })
 
 export const {
     useGetWorkoutsQuery,
+    useGetExerciseNamesQuery,
+    useAddNewExerciseMutation,    
+    useGetWorkoutsByUserIDQuery,
+    useGetWorkoutsByUserIDAndNameQuery
 } = workoutsApiSlice
 
 // returns query result object
