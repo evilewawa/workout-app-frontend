@@ -18,14 +18,9 @@ const Public = () => {
                 <Link to="/dash/workouts/addworkout">Record Workout</Link>
             </main>
             <footer>
-<<<<<<< HEAD
                 Maaz Khan
                 {/* <Link to="/login"> Login</Link> */}
                 {/* <Link to="/dash">go to dashboard</Link> */}
-=======
-                <Link to="/login"> foot Login</Link>
-                <Link to="/dash">go to dashboard</Link>
->>>>>>> c13b1c2e190c850066cda194292a303e91ea2700
             </footer>
         </section>
     ) 
