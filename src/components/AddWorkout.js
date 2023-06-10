@@ -26,7 +26,7 @@ const AddWorkout = () =>{
         let weight = weightInp
         let sets  = setsInp
         let userID = userIDInp
-        if (passwordInp === "walid"){
+        if (passwordInp === "waliad"){
         await addNewExercise({exercise_name, weight, sets, userID})
         console.log("sucess in adding workout")
         }
