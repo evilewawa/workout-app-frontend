@@ -118,6 +118,11 @@ a:focus-visible {
   border-top: 2px solid var(--BORDER-COLOR);
   border-bottom: 2px solid var(--BORDER-COLOR);
   padding: 1em 0;
+  display: inline-block;
+}
+.main_content_container{
+  width: 49%;
+  display: inline-block;
 }
 
 .public__addr {

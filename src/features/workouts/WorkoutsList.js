@@ -15,18 +15,22 @@ const WorkoutList = ({exerciseName}) =>{
         isError,
         error
     } = useGetWorkoutsQuery()
-
+    function reverseArr(arr){
+        let x = [...arr]
+        return x.reverse()
+    }
     // console.log(exerciseName)
     let content;
     if (isLoading) content = <p>Loading</p>
     if (isError){
         content = <p className ="errmsg">{error?.data?.message}</p>
     }
-    if (isSuccess && userID){
+    if (isSuccess ){
         const {ids} = workouts
 
         const tableContent = ids?.length
-            ? ids.map(workoutId => <Workout key = {workoutId} workoutId= {workoutId}
+            ? reverseArr(ids).map(workoutId =>
+                 <Workout key = {workoutId} workoutId= {workoutId}
                  userID = {userID? userID : 1} 
                 exercise_name = {exerciseName? exerciseName : "all"} />)
             : null
@@ -49,7 +53,6 @@ const WorkoutList = ({exerciseName}) =>{
             
         )
     }
-    
 
     return (
         
